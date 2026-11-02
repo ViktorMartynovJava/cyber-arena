@@ -41,7 +41,7 @@ public class Main extends ApplicationAdapter {
 
         background = new Background(WORLD_WIDTH,WORLD_HEIGHT);
 
-        player = new Player(384, 184, 100, 100, 300f, playerTexture);
+        player = new Player(384, 184, 48f, 105f, 300f, playerTexture);
     }
 
     @Override
