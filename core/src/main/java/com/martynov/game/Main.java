@@ -56,7 +56,7 @@ public class Main extends ApplicationAdapter {
     public void render() {
         float delta = Gdx.graphics.getDeltaTime();
 
-        player.update(delta);
+        player.update(delta, background);
 
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 
