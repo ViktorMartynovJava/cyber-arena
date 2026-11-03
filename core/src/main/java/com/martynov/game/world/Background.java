@@ -1,7 +1,9 @@
 package com.martynov.game.world;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Polygon;
 
 public class Background {
@@ -19,12 +21,17 @@ public class Background {
         this.texture = new Texture("GameArena.jpg");
 
         float[] vertices = new float[] {
-            95f,  45f,
-            705f, 45f,
-            705f, 150f,
-            605f, 280f,
-            145f, 280f,
-            95f,  180f
+            60f,  30f,
+            720f, 30f,
+            725f, 130f,
+            690f, 200f,
+            650f, 235f,
+            570f, 240f,
+            570f, 245f,
+            215f, 245f,
+            175f, 225f,
+            70f,  185f,
+            55f,  115f
         };
 
         this.walkableArea = new Polygon(vertices);
@@ -44,5 +51,10 @@ public class Background {
 
     public void dispose() {
         texture.dispose();
+    }
+
+    public void renderDebug(ShapeRenderer renderer) {
+        renderer.setColor(Color.GREEN);
+        renderer.polygon(walkableArea.getTransformedVertices());
     }
 }

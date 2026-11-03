@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -22,6 +23,7 @@ public class Main extends ApplicationAdapter {
     public static final float WORLD_HEIGHT = 400;
 
     private Background background;
+    private ShapeRenderer shapeRenderer;
 
     private SpriteBatch batch;
     private OrthographicCamera orthographicCamera;
@@ -38,6 +40,8 @@ public class Main extends ApplicationAdapter {
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, orthographicCamera);
         batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+
         playerTexture = new Texture("HeroVer1.png");
         runTexture = new Texture("AnimationHeroVer1.png");
         attackTexture = new Texture("FightVer1.png");
@@ -67,6 +71,12 @@ public class Main extends ApplicationAdapter {
         background.render(batch);
         player.render(batch);
         batch.end();
+
+        shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        background.renderDebug(shapeRenderer);
+        shapeRenderer.end();
+
     }
 
     @Override
