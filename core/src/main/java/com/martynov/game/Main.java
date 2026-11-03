@@ -28,6 +28,8 @@ public class Main extends ApplicationAdapter {
     private Viewport viewport;
 
     private Texture playerTexture;
+    private Texture runTexture;
+    private Texture attackTexture;
     private Player player;
 
 
@@ -37,11 +39,12 @@ public class Main extends ApplicationAdapter {
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, orthographicCamera);
         batch = new SpriteBatch();
         playerTexture = new Texture("HeroVer1.png");
-        playerTexture = new Texture("AnimationHeroVer1.png");
+        runTexture = new Texture("AnimationHeroVer1.png");
+        attackTexture = new Texture("FightVer1.png");
 
-        background = new Background(WORLD_WIDTH,WORLD_HEIGHT);
+        background = new Background(WORLD_WIDTH, WORLD_HEIGHT);
 
-        player = new Player(100f, 160f, 48f, 105f, 300f, playerTexture);
+        player = new Player(100f, 160f, 48f, 105f, 300f, runTexture, attackTexture);
     }
 
     @Override
@@ -68,7 +71,9 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        player.dispose();
+        playerTexture.dispose();
+        runTexture.dispose();
+        attackTexture.dispose();
         batch.dispose();
         background.dispose();
     }
