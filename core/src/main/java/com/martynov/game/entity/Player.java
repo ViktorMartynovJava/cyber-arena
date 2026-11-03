@@ -14,6 +14,8 @@ public class Player {
     private float speed = 300f;
     private Texture texture;
 
+    private boolean playerReverse = false;
+
     private Animation<TextureRegion> runAnimation;
     private float stateTime = 0f;
     private TextureRegion currentFrame;
@@ -41,9 +43,11 @@ public class Player {
 
         if (left) {
             x -= speed * delta;
+            playerReverse = true;
         }
         if (right) {
             x += speed * delta;
+            playerReverse = false;
         }
         if (up) {
             y += speed * delta;
@@ -71,8 +75,15 @@ public class Player {
     }
 
     public void render(SpriteBatch batch) {
-            currentFrame = runAnimation.getKeyFrame(stateTime, true);
-            batch.draw(currentFrame, x, y, width, height);
+        currentFrame = runAnimation.getKeyFrame(stateTime, true);
+
+        if (playerReverse && !currentFrame.isFlipX()) {
+            currentFrame.flip(true, false);
+        } else if (!playerReverse && currentFrame.isFlipX()) {
+            currentFrame.flip(true, false);
+        }
+
+        batch.draw(currentFrame, x, y, width, height);
     }
 
     public void dispose() {
